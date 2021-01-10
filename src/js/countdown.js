@@ -9,7 +9,6 @@ class CountDown {
         this.daleys = daleys
         this.segments = segments
         this._craetTimet()
-
     }
 
     _getFields() {
@@ -34,10 +33,9 @@ class CountDown {
                 daley: this.daleys[key],
                 segment: this.segments[key]
             })
-            await _await(this.daleys[key] + 20)
+            await _await(this.daleys[key] + 800)
             $.el(`span[data-value="${key}"]`).innerHTML = date[key]
             $.el(`span[data-field="${key}"]`) && ($.el(`span[data-field="${key}"]`).innerHTML = this._getFields()[key])
-
         })
 
 

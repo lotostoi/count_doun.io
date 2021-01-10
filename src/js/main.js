@@ -17,7 +17,7 @@ const daleys = {
   days: 0, hours: 99, minutes: 233, seconds: 399
 }
 const segments = {
-  days: [43, 150], hours: [43, 150], minutes: [43, 150], seconds: [43, 150]
+  days: [40, 140], hours: [40, 110], minutes: [40, 110], seconds: [40, 100]
 }
 
 new CountDown({ container: '.countdown', animations, daleys, segments })
