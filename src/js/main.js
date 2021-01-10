@@ -2,39 +2,24 @@ import 'normalize.css'
 import '@/scss/style.scss'
 
 import { $ } from "@/js/functions"
-import Obj from "@/js/object"
 
-import days from 'anim/1.json'
-import hours from 'anim/2.json'
-import minutes from 'anim/3.json'
-import seconds from 'anim/4.json'
+import CountDown from "@/js/countdown"
 
+import days from 'anim/days.json'
+import hours from 'anim/hours.json'
+import minutes from 'anim/minutes.json'
+import seconds from 'anim/seconds.json'
 
-new Obj({
-  container: '.days',
-  animation: days,
-  type : "days",
-  segment: [43, 150]
-})
-new Obj({
-  container: '.hours',
-  animation: hours,
-  type : "hours",
-  daley: 99,
-  segment: [20, 150]
-})
-new Obj({
-  container: '.minutes',
-  animation: minutes,
-  type : "minutes",
-  daley: 233,
-  segment: [43, 150]
-})
-new Obj({
-  container: '.seconds',
-  animation: seconds,
-  daley: 399,
-  type : "seconds",
-  segment: [43, 150]
-})
+const animations = {
+  days, hours, minutes, seconds
+}
+const daleys = {
+  days: 0, hours: 99, minutes: 233, seconds: 399
+}
+const segments = {
+  days: [43, 150], hours: [43, 150], minutes: [43, 150], seconds: [43, 150]
+}
+
+new CountDown({ container: '.countdown', animations, daleys, segments })
+
 
