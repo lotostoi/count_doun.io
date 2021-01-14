@@ -3,7 +3,7 @@ const path = require('path')
 const HTML = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -24,7 +24,7 @@ const conf = {
     //path: path.resolve(__dirname, '/'),
   },
   resolve: {
-    extensions: ['.js', '.scss', '.css', '.json', '.img', 'png'],
+    //extensions: ['.js', '.scss', '.css', '.json', '.img', 'png'],
     alias: {
       vue: 'vue/dist/vue.js',
       '~': path.resolve(__dirname, 'src'),
@@ -90,21 +90,20 @@ const conf = {
             loader: 'url-loader',
             options: {
               limit: 100000,
-              publicPath: !isProduction ? '/' : '/src',
+              /*      publicPath: !isProduction ? '/' : '/src', */
               outputPath: 'img/',
             },
           },
         ],
       },
       {
-        test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 100000,
-              publicPath: !isProduction ? '/' : '/src',
-              outputPath: 'font/',
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
             },
           },
         ],
@@ -132,7 +131,7 @@ const conf = {
       minSize: 10000,
       maxSize: 250000,
     },
-    minimize:false,
+    minimize: false,
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   plugins: [
@@ -148,7 +147,7 @@ const conf = {
     }),
 
     new CopyPlugin({
-      patterns: [{ from: 'assets', to :'src/assets'  }/* , { from: 'favicon.ico' } */],
+      patterns: [{ from: 'assets', to: 'src/assets' } /* , { from: 'favicon.ico' } */],
     }),
     new webpack.DefinePlugin({
       isDevelopment: isDevelopment,

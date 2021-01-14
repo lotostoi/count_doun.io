@@ -1,18 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;1,300&display=swap');
+@import "fonts";
+html {
+  font-size: 14px;
+}
 body {
   background-color: black;
-  font-family: "Rubik", sans-serif;
+  font-family: $rr;
   color: white;
+}
+.wrapper {
   display: flex;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  padding: 80px 5%;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: url('../assets/img/background.jpg') no-repeat;
+  background-size: cover;
 }
 .timer {
   display: flex;
   width: 100%;
-  max-width: 1400px;
   align-items: center;
-  margin: auto;
   justify-content: space-evenly;
   box-sizing: content-box;
   & > div:first-of-type {
@@ -25,30 +35,33 @@ body {
   }
   & > div {
     width: 23%;
-    height: 23%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    box-sizing: content-box;
     & > .cont {
       width: 100%;
-      height:100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
-     
+      top: 0;
+      left: 0;
       position: absolute;
       & > span:first-of-type {
-        margin-top: 38%;
+        padding-top: 38%;
         width: 100%;
-        height:100%;
+        height: 100%;
         display: flex;
         font-size: 3.2vw;
         color: white;
         justify-content: center;
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
+        box-sizing: border-box;
       }
       & > span:last-of-type {
         width: 100%;
@@ -60,9 +73,44 @@ body {
         font-weight: 200;
         justify-content: center;
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
+        box-sizing: border-box;
       }
+    }
+  }
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  & > h1 {
+    font-size: 5rem;
+    text-align: center;
+    font-weight: 900;
+    margin: 20px auto;
+  }
+  & > p {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 400;
+    margin: 20px auto;
+  }
+  & > a {
+    padding: 15px;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 700;
+    background-color: white;
+    text-decoration: none;
+    width: 100px;
+    color: rgb(7, 7, 34);
+    border-radius: 5px;
+    margin: 20px auto 0;
+    &:hover {
+      background-color: rgb(212, 209, 209);
+    }
+    &:active {
+      transform: scale(.99);
     }
   }
 }
