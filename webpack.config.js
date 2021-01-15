@@ -69,7 +69,7 @@ const conf = {
       },
       {
         test: /\.js$/,
-        exclude: [/node_modules/, path.resolve(__dirname, 'src/js', 'main.js'), path.resolve(__dirname, 'src/js', 'countdown.js')],
+        exclude: [/node_modules/, path.resolve(__dirname, 'src/js', 'main.js')],
         use: {
           loader: 'babel-loader',
         },

@@ -4,7 +4,8 @@ import CountDown from "@/js/countdown"
 
 window.CountDown = CountDown
 
-/* new CountDown({ container: '.countdown' }) 
-new CountDown({ container: '.countdown2' })  */
+ //new CountDown({ container: '.countdown' }) 
+
+
 
 

@@ -1,11 +1,11 @@
 import { $, _await } from '@/js/functions'
 import Obj from '@/js/object'
-
+import debounce from 'debounce'
 import days from 'anim/days.json'
 import hours from 'anim/hours.json'
 import minutes from 'anim/minutes.json'
 import seconds from 'anim/seconds.json'
-const FIELDS = "days-Дни/hours-Часы/minutes-Минуты/seconds-Секунды"
+const FIELDS = "days-Days/hours-Hours/minutes-Minutes/seconds-Seconds"
 const START_DATE = "2023/1/25/9/15"
 
 
@@ -36,6 +36,7 @@ class CountDown {
     this.delays = delays
     this.segments = segments
     this._createTimer()
+
   }
 
   _getFields() {
@@ -61,14 +62,19 @@ class CountDown {
         segment: this.segments[key],
       })
       await _await(this.delays[key] + 800)
-      $.el(`span[data-value="${key}"]`,this.container).innerHTML = date[key]
-      $.el(`span[data-field="${key}"]`,this.container) && ($.el(`span[data-field="${key}"]`,this.container).innerHTML = this._getFields()[key])
+      const elValue = $.el(`span[data-value="${key}"]`, this.container)
+      const elField = $.el(`span[data-field="${key}"]`, this.container)
+      this.#setFontSize(key)
+      this.#addHendler(key)
+      elValue.innerHTML = date[key]
+      elField && (elField.innerHTML = this._getFields()[key])
+
     })
 
-    const valueDay = $.el(`span[data-value="days"]`,this.container)
-    const valueHours = $.el(`span[data-value="hours"]`,this.container)
-    const valueMinutes = $.el(`span[data-value="minutes"]`,this.container)
-    const valueSeconds = $.el(`span[data-value="seconds"]`,this.container)
+    const valueDay = $.el(`span[data-value="days"]`, this.container)
+    const valueHours = $.el(`span[data-value="hours"]`, this.container)
+    const valueMinutes = $.el(`span[data-value="minutes"]`, this.container)
+    const valueSeconds = $.el(`span[data-value="seconds"]`, this.container)
 
     setInterval(() => {
       let date = this._calcStartValue()
@@ -91,7 +97,7 @@ class CountDown {
   }
 
   _calcStartValue() {
- 
+
     const realDate = this.container.dataset.date ? this.container.dataset.date.split('/') : START_DATE.split('/')
 
     for (let i = 0;i <= 5;i++) {
@@ -111,6 +117,20 @@ class CountDown {
     }
 
     return date
+  }
+  #addHendler(key) {
+    window.addEventListener('resize', debounce(() => {
+      this.#setFontSize(key)
+    }, 10))
+  }
+  #setFontSize(key) {
+    const elValue = $.el(`span[data-value="${key}"]`, this.container)
+    const elField = $.el(`span[data-field="${key}"]`, this.container)
+    const fsValue = elValue.offsetWidth * 1.5
+    const fsField = elField.offsetWidth * 0.5
+    elValue.style.fontSize = `${fsValue}%`
+    elField.style.fontSize = `${fsField}%`
+   
   }
 }
 
