@@ -1,35 +1,33 @@
 @font-face {
   font-family: 'Rubik-Medium';
-  src: url('../assets/fonts/Rubik-Medium.ttf') format('ttf');
+  src: url('../fonts/Rubik-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Rubik-Light';
+  src: url('../fonts/Rubik-Light.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Rubik-Regular';
-  src: url('../assets/fonts/Rubik-Regular.ttf') format('ttf');
+  src: url('../fonts/Rubik-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Rubik-Bold';
-  src: url('../assets/fonts/Rubik-Bold.ttf') format('ttf');
+  src: url('../fonts/Rubik-Bold.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
-$rr: 'Rubik-Regular' /* , 'Arial', Sans-serif */;
+$rl: 'Rubik-light' , 'Arial', Sans-serif;
+$rr: 'Rubik-Regular' , 'Arial', Sans-serif;
 $rm: 'Rubik-Medium', 'Arial', Sans-serif;
 $rb: 'Rubik-Bold', 'Arial', Sans-serif;
 
-/*   @font-face {
-    font-family: "Montserrat bold";
-    src: url("../font/Montserrat/montserrat-bold-webfont.eot");
-    src: url("../font/Montserrat/montserrat-bold-webfont.eot?#iefix") format("embedded-opentype"),
-      url("../font/Montserrat/montserrat-bold-webfont.woff2") format("woff2"),
-      url("../font/Montserrat/montserrat-bold-webfont.woff") format("woff"),
-      url("../font/Montserrat/montserrat-bold.ttf") format("ttf");
-    font-weight: normal;
-    font-style: normal;
-  } */
+

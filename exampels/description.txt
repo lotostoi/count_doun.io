@@ -1,0 +1,47 @@
+Шаг 1 
+Создать блок в html. Например.  
+<div class="timer countdown1" data-date="2022/1/25/9/15"
+            data-titles="days-Days/hours-Hours/minutes-Mimutes/seconds-Seconds">
+</div>
+тут data-date –задает дату конца отсчета, а data-titles – название полей (примеры можно посмотреть запустив index.html, из папки examples,  в браузере ).
+Шаг 2
+Подключить скрипты
+<script src="./js/countdown.js"></script>  // находится в папке examples/js
+    <script>
+        new Countdown({ container: '.countdown' }) 
+    </script>
+ </script>
+Готово, осталось написать стили (в зависимости от ваших задач, пример стилей можно посмотреть в папке examples/css) для следующей структуры):
+<div class="timer countdown1" data-date="2022/1/25/9/15"
+    data-titles="days-Days/hours-Hours/minutes-Mimutes/seconds-Seconds">
+    <div class="filed days" data-days="days">
+        <div class="filed days" data-days="days">
+            <div class="cont">
+                <span class="value" data-value="days">739</span>
+                <span class="title" data-field="days">Дни</span>
+            </div>
+            <svg>code of animation...</svg>
+        </div>
+        <div class="filed hours" data-hours="hours">
+            <div class="cont">
+                <span class="value" data-value="hours">20</span>
+                <span class="title" data-field="hours">Часы</span>
+            </div>
+            <svg>code of animation...</svg>
+        </div>
+        <div class="filed minutes" data-minutes="minutes">
+            <div class="cont">
+                <span class="value" data-value="minutes">3</span>
+                <span class="title" data-field="minutes">Минуты</span>
+            </div>
+            <svg>code of animation...</svg>
+        </div>
+        <div class="filed seconds" data-seconds="seconds">
+            <div class="cont">
+                <span class="value" data-value="seconds">12</span>
+                <span class="title" data-field="seconds">Секунды</span>
+            </div>
+            <svg>code of animation...</svg>
+        </div>
+    </div>
+</div>

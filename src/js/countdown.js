@@ -5,6 +5,9 @@ import days from 'anim/days.json'
 import hours from 'anim/hours.json'
 import minutes from 'anim/minutes.json'
 import seconds from 'anim/seconds.json'
+const FIELDS = "days-Дни/hours-Часы/minutes-Минуты/seconds-Секунды"
+const START_DATE = "2023/1/25/9/15"
+
 
 class CountDown {
   constructor({
@@ -36,7 +39,7 @@ class CountDown {
   }
 
   _getFields() {
-    const d = this.container.dataset.titles.split('/')
+    const d = this.container.dataset.titles ? this.container.dataset.titles.split('/') : FIELDS.split('/')
     const startFields = {}
     d.forEach((f) => {
       const key = f.split('-')[0]
@@ -58,14 +61,14 @@ class CountDown {
         segment: this.segments[key],
       })
       await _await(this.delays[key] + 800)
-      $.el(`span[data-value="${key}"]`).innerHTML = date[key]
-      $.el(`span[data-field="${key}"]`) && ($.el(`span[data-field="${key}"]`).innerHTML = this._getFields()[key])
+      $.el(`span[data-value="${key}"]`,this.container).innerHTML = date[key]
+      $.el(`span[data-field="${key}"]`,this.container) && ($.el(`span[data-field="${key}"]`,this.container).innerHTML = this._getFields()[key])
     })
 
-    const valueDay = $.el(`span[data-value="days"]`)
-    const valueHours = $.el(`span[data-value="hours"]`)
-    const valueMinutes = $.el(`span[data-value="minutes"]`)
-    const valueSeconds = $.el(`span[data-value="seconds"]`)
+    const valueDay = $.el(`span[data-value="days"]`,this.container)
+    const valueHours = $.el(`span[data-value="hours"]`,this.container)
+    const valueMinutes = $.el(`span[data-value="minutes"]`,this.container)
+    const valueSeconds = $.el(`span[data-value="seconds"]`,this.container)
 
     setInterval(() => {
       let date = this._calcStartValue()
@@ -88,9 +91,10 @@ class CountDown {
   }
 
   _calcStartValue() {
-    const realDate = this.container.dataset.date.split('/')
+ 
+    const realDate = this.container.dataset.date ? this.container.dataset.date.split('/') : START_DATE.split('/')
 
-    for (let i = 0; i <= 5; i++) {
+    for (let i = 0;i <= 5;i++) {
       i === 1 && realDate[i]--
       !realDate[i] && (realDate[i] = 0)
     }

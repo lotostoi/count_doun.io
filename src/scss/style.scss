@@ -1,3 +1,4 @@
+@import "mixins";
 @import "fonts";
 html {
   font-size: 14px;
@@ -12,11 +13,11 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding: 80px 5%;
+  padding: 10vh 5%;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  background: url('../assets/img/background.jpg') no-repeat;
+  background: url("../img/background.jpg") no-repeat;
   background-size: cover;
 }
 .timer {
@@ -59,6 +60,7 @@ body {
         color: white;
         justify-content: center;
         position: absolute;
+        font-family: $rl;
         top: 0;
         left: 0;
         box-sizing: border-box;
@@ -69,6 +71,12 @@ body {
         padding-top: 62%;
         display: flex;
         font-size: 1vw;
+        @include mq(1200px,max) {
+          font-size: 1.5vw;
+        } 
+        @include mq(400px,max) {
+          font-size: 2vw;
+        } 
         color: white;
         font-weight: 200;
         justify-content: center;
@@ -85,9 +93,13 @@ body {
   flex-direction: column;
   & > h1 {
     font-size: 5rem;
+    @include mq(1000px,max) {
+      font-size: 2.5rem;
+    } 
     text-align: center;
     font-weight: 900;
     margin: 20px auto;
+    font-family: $rb;
   }
   & > p {
     font-size: 1.8rem;
@@ -98,6 +110,9 @@ body {
   & > a {
     padding: 15px;
     font-size: 1.8rem;
+    @include mq(1000px,max) {
+      font-size: 1rem;
+    } 
     text-align: center;
     font-weight: 700;
     background-color: white;
@@ -110,7 +125,7 @@ body {
       background-color: rgb(212, 209, 209);
     }
     &:active {
-      transform: scale(.99);
+      transform: scale(0.99);
     }
   }
 }

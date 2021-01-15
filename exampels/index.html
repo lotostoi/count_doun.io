@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Document</title>
+    <link href="./css/countdown.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="timer countdown"></div>
+        <div class="timer countdown1" data-date="2022/1/25/9/15"
+            data-titles="days-Days/hours-Hours/minutes-Mimutes/seconds-Seconds"></div>
+        <div class="timer countdown2" data-date="2022/1/25/9/15"
+            data-titles="hours-Hours/minutes-Mimutes/seconds-Seconds"></div>
+        <div class="timer countdown3" data-date="2022/1/25/9/15" data-titles="minutes-Mimutes/seconds-Seconds"></div>
+        <div class="timer countdown4" data-date="2022/1/25/9/15" data-titles="seconds-Seconds"></div>
+        <div class="timer countdown5" data-date="2022/1/25/9/15" data-titles="hours-Hours"></div>
+    </div>
+    <script src="./js/countdown.js"></script>
+    <script>
+        new CountDown({ container: '.countdown' })
+        new CountDown({ container: '.countdown1' })
+        new CountDown({ container: '.countdown2' })
+        new CountDown({ container: '.countdown3' })
+        new CountDown({ container: '.countdown4' })
+        new CountDown({ container: '.countdown5' })
+    </script>
+</body>
+
+</html>

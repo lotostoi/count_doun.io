@@ -17,19 +17,18 @@ const conf = {
   context: path.resolve(__dirname, 'src'),
   mode: isProduction ? 'production' : 'development',
   entry: ['@babel/polyfill', './js/main.js'],
-
   output: {
     publicPath: !isProduction ? '/' : './',
-    filename: 'js/[name].bundle.js',
-    //path: path.resolve(__dirname, '/'),
+    filename: 'js/countdown.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    //extensions: ['.js', '.scss', '.css', '.json', '.img', 'png'],
+    extensions: ['.js', '.scss', '.css', '.json', '.img', 'png'],
     alias: {
       vue: 'vue/dist/vue.js',
       '~': path.resolve(__dirname, 'src'),
       '@': path.resolve(__dirname, 'src'),
-      'anim': path.resolve(__dirname, 'src/assets/animations'),
+      'anim': path.resolve(__dirname, 'src/animations'),
     },
   },
   module: {
@@ -53,9 +52,6 @@ const conf = {
         use: [
           {
             loader: isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-            /*  options: {
-              publicPath: !isProduction ? '/' : '/src/css',
-            }, */
           },
           'css-loader',
         ],
@@ -65,20 +61,15 @@ const conf = {
         use: [
           {
             loader: isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-            options: {
-              //  publicPath: !isProduction ? '' : '../src',
-              //  outputPath: 'css/[name][hash].css',
-            },
           },
           'css-loader',
           'sass-loader',
         ],
-        // include: path.resolve(__dirname, 'src/scss/**.scss'),
-        sideEffects: true,
+
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, path.resolve(__dirname, 'src/js', 'main.js'), path.resolve(__dirname, 'src/js', 'countdown.js')],
         use: {
           loader: 'babel-loader',
         },
@@ -90,7 +81,6 @@ const conf = {
             loader: 'url-loader',
             options: {
               limit: 100000,
-              /*      publicPath: !isProduction ? '/' : '/src', */
               outputPath: 'img/',
             },
           },
@@ -125,18 +115,18 @@ const conf = {
     hints: false,
   },
   optimization: {
-    splitChunks: {
+  /*   splitChunks: {
       // include all types of chunks
       chunks: 'all',
       minSize: 10000,
-      maxSize: 250000,
-    },
-    minimize: false,
+      maxSize: 1000000,
+    }, */
+    minimize: isProduction,
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(/* { /* cleanStaleWebpackAssets: false /} */),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name][hash].css',
       chunkFilename: 'css/[id][hash].css',
@@ -146,9 +136,9 @@ const conf = {
       minify: isProduction,
     }),
 
-    new CopyPlugin({
-      patterns: [{ from: 'assets', to: 'src/assets' } /* , { from: 'favicon.ico' } */],
-    }),
+    // new CopyPlugin({
+    // patterns: [{ from: 'assets', to: 'src/assets' } /* , { from: 'favicon.ico' } */],
+    // }),
     new webpack.DefinePlugin({
       isDevelopment: isDevelopment,
       isProduction: isProduction,

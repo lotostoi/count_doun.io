@@ -2,6 +2,9 @@ import 'normalize.css'
 import '@/scss/style.scss'
 import CountDown from "@/js/countdown"
 
-new CountDown({ container: '.countdown' })
+window.CountDown = CountDown
+
+/* new CountDown({ container: '.countdown' }) 
+new CountDown({ container: '.countdown2' })  */
 
 
